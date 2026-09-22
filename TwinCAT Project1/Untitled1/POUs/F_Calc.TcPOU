@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="F_Calc" Id="{f8a72b7c-41b2-461a-bd0c-4813f483d062}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK F_Calc
+VAR_INPUT
+	nGetal : INT := 0;
+END_VAR
+VAR_OUTPUT
+	
+END_VAR
+VAR
+	_fAns : REAL;
+	_fSavedValue : REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="fAns" Id="{29aa46e8-2a56-4b92-84e2-63b01c8e76f2}">
+      <Declaration><![CDATA[PROPERTY PUBLIC fAns : REAL]]></Declaration>
+      <Get Name="Get" Id="{cedb09b0-411e-4f47-beab-5e1ea1270014}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[fAns := _fAns;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="fSavedValue" Id="{a7fd3f70-aa0b-4693-8c99-5a1e754fa38d}">
+      <Declaration><![CDATA[PROPERTY PUBLIC fSavedValue : REAL]]></Declaration>
+      <Get Name="Get" Id="{992703e8-8292-436e-a4aa-d77b7a671e64}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[fSavedValue := _fSavedValue;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{abe5e5ae-17ee-45c8-ba18-b725a6e28db0}">
+        <Declaration><![CDATA[VAR
+	//fGetal : REAL;
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_fSavedValue := fSavedValue;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="M_Add" Id="{ccb8c972-52af-4245-a034-9ba4cd3b4fc1}">
+      <Declaration><![CDATA[METHOD PUBLIC M_Add : REAL
+VAR_INPUT
+		getalOmOpTeTellen : REAL ;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_fAns := _fAns + getalOmOpTeTellen;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Divide" Id="{ceaec26a-7484-45c7-ae16-e33819cbdc3c}">
+      <Declaration><![CDATA[METHOD PUBLIC M_Divide : REAL
+VAR_INPUT
+		GetalOmTeDelen : REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_fAns := _fAns / GetalOmTeDelen;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Multiply" Id="{f6932f9c-a959-40f5-957f-8548bc23edfc}">
+      <Declaration><![CDATA[METHOD PUBLIC M_Multiply : REAL
+VAR_INPUT
+	GetalOmTeVermenigvuldigen : REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_fAns := _fAns * GetalOmTeVermenigvuldigen;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Subtract" Id="{141b6fa8-96b4-4383-85c6-529bc8ebf37f}">
+      <Declaration><![CDATA[METHOD PUBLIC M_Subtract : REAL
+VAR_INPUT
+	getalOmAfTeTrekken : REAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_fAns := _fAns - getalOmAfTeTrekken;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="F_Calc">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="F_Calc.fAns.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="F_Calc.fSavedValue.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="F_Calc.fSavedValue.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="F_Calc.M_Add">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="F_Calc.M_Divide">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="F_Calc.M_Multiply">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="F_Calc.M_Subtract">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

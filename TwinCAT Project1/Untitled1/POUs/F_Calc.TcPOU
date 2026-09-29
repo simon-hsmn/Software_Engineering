@@ -77,6 +77,15 @@ END_VAR
         <ST><![CDATA[_fAns := _fAns * GetalOmTeVermenigvuldigen;]]></ST>
       </Implementation>
     </Method>
+    <Method Name="M_Save" Id="{1f363065-0c6e-44f5-9b38-78905070f6f4}">
+      <Declaration><![CDATA[METHOD PUBLIC M_Save
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_fSavedValue := _fAns;]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="M_Subtract" Id="{141b6fa8-96b4-4383-85c6-529bc8ebf37f}">
       <Declaration><![CDATA[METHOD PUBLIC M_Subtract : REAL
 VAR_INPUT
@@ -106,6 +115,9 @@ END_VAR
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="F_Calc.M_Multiply">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="F_Calc.M_Save">
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="F_Calc.M_Subtract">

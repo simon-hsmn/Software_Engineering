@@ -3,24 +3,22 @@
   <POU Name="MAIN" Id="{7de039f4-eca8-4806-a063-3ce089714fb6}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	calc1 : F_Calc;
+	blockgolf1: FB_Blokgolf;
 	bTest: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF bTest THEN
-	calc1.M_Add(1);
-	calc1.M_Multiply(12.123);
-	bTest := 0;
+	blockgolf1.M_Start(T#2S, T#1S);
 END_IF;
-]]></ST>
+
+blockgolf1();]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="8" Count="0" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="2" Count="0" />
       <LineId Id="10" Count="1" />
-      <LineId Id="7" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="17" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

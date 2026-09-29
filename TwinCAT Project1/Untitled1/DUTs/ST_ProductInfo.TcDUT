@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <DUT Name="ST_ProductInfo" Id="{82bd8f23-6c25-4bd2-81fd-3288ebcf994a}">
+    <Declaration><![CDATA[TYPE ST_ProductInfo :
+STRUCT
+	eproductType:	E_ProductType;
+	fSpecificWeight: REAL;
+	fDimension1 : REAL;
+	fDimension2 : REAL;
+	fDimension3 : REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

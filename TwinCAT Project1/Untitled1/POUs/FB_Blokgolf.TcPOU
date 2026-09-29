@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="FB_Blokgolf" Id="{d0b27e9a-7cde-4b2e-a891-902789c8648a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Blokgolf
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	_timer1 : TP;
+	_timer2 : TP;
+	bEnabled: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[_timer1.IN := bEnabled AND NOT _timer2.Q;
+_timer1();
+
+_timer2.IN := bEnabled AND NOT _timer1.Q;
+_timer2();]]></ST>
+    </Implementation>
+    <Property Name="bSignalOut" Id="{28d69959-e79d-41a9-8ffe-7579100c444f}">
+      <Declaration><![CDATA[PROPERTY PUBLIC bSignalOut : BOOL]]></Declaration>
+      <Get Name="Get" Id="{291c1f72-9207-4cec-8a34-6059f1bff2c1}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{4926ffb8-daf8-4c4f-938e-dfb7ea85ee92}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="M_Start" Id="{d7473e49-bd23-4ff1-8062-541eb712e25e}">
+      <Declaration><![CDATA[METHOD PUBLIC M_Start
+VAR_INPUT
+	onTime : TIME;
+	offTime : TIME;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bEnabled := TRUE;
+_timer1.PT := onTime;
+_timer2.PT := offTime;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Stop" Id="{189d4a1f-c273-4665-af82-f2d525d6f123}">
+      <Declaration><![CDATA[METHOD PUBLIC M_Stop
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[bEnabled := false;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="nCounter" Id="{1757287f-c614-468e-986e-353590e49607}">
+      <Declaration><![CDATA[PROPERTY PUBLIC nCounter : REAL]]></Declaration>
+      <Get Name="Get" Id="{479e1dee-2000-4d97-b0a5-faa09234d9cf}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{02650336-76ed-4272-a435-cbae06038377}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="FB_Blokgolf">
+      <LineId Id="15" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="21" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Blokgolf.bSignalOut.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Blokgolf.bSignalOut.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Blokgolf.M_Start">
+      <LineId Id="5" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Blokgolf.M_Stop">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Blokgolf.nCounter.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Blokgolf.nCounter.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

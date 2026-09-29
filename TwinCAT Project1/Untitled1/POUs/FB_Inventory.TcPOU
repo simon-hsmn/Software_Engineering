@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.13">
+  <POU Name="FB_Inventory" Id="{1590838d-79b5-42ab-a987-ea8205388890}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Inventory
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	TYPE E_productType:
+	(
+		cube,
+		cylinder,
+		sphere			
+	)
+	;
+	END_TYPE
+	
+	TYPE stProductInfo:
+	STRUCT
+		eproductType:	E_ProductType;
+		fSpecificWeight: REAL;
+		 
+	END_STRUCT
+	END_TYPE
+	
+	TYPE stInventory:
+		STRUCT
+			
+		END_STRUCT
+	END_TYPE
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="M_Add" Id="{60b6ffc1-062c-4858-a5b9-496d0cf9a5e1}">
+      <Declaration><![CDATA[METHOD PUBLIC M_Add
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_CalculateWeight" Id="{57d04ff3-3912-4b6b-a7e1-083aaea20f0e}">
+      <Declaration><![CDATA[METHOD PUBLIC M_CalculateWeight
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Remove" Id="{d8764512-37aa-4b16-b675-337ad4ad0d0e}">
+      <Declaration><![CDATA[METHOD PUBLIC M_Remove
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_Inventory">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Inventory.M_Add">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Inventory.M_CalculateWeight">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Inventory.M_Remove">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

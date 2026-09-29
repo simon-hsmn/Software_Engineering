@@ -3,22 +3,29 @@
   <POU Name="MAIN" Id="{7de039f4-eca8-4806-a063-3ce089714fb6}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
-	blockgolf1: FB_Blokgolf;
+	//blockgolf1: FB_Blokgolf;
+	_product1: ST_ProductInfo := (eproductType := E_ProductType.cube, fDimension1 := 10, fDimension2 := 5, fDimension3 := 12, fSpecificWeight := 1000);
+	_product2: ST_ProductInfo := (eproductType := E_ProductType.cylinder, fDimension1 := 20, fDimension2 := 10, fDimension3 := 24, fSpecificWeight := 2000);
+	inventory1: FB_Inventory(product1 := _product1, product2 := _product2);
 	bTest: BOOL;
+
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF bTest THEN
-	blockgolf1.M_Start(T#2S, T#1S);
-END_IF;
-
-blockgolf1();]]></ST>
+	inventory1.M_Add(_product2);
+	inventory1.M_Remove(0);
+	bTest := FALSE;
+END_IF
+]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
-      <LineId Id="8" Count="0" />
-      <LineId Id="10" Count="1" />
-      <LineId Id="18" Count="0" />
       <LineId Id="17" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="42" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

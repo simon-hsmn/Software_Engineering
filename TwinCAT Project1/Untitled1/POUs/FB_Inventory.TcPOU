@@ -7,35 +7,80 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	TYPE E_productType:
-	(
-		cube,
-		cylinder,
-		sphere			
-	)
-	;
-	END_TYPE
-	
-	TYPE stProductInfo:
-	STRUCT
-		eproductType:	E_ProductType;
-		fSpecificWeight: REAL;
-		 
-	END_STRUCT
-	END_TYPE
-	
-	TYPE stInventory:
-		STRUCT
-			
-		END_STRUCT
-	END_TYPE
+	_stInventory : ARRAY [0..5] OF ST_ProductInfo;
+	_nNumberProducts : INT := 0;
+	_fTotalWeight : REAL;
+	_fTotalVolume : REAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
+    <Method Name="FB_init" Id="{a3ca062b-5c77-4d2d-ad09-0a04b60bebd6}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	product1 : ST_ProductInfo;
+	product2 : ST_ProductInfo;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_Add(product1);
+M_Add(product2);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="fTotalVolume" Id="{2b8f90b8-98a7-47c5-8cdf-19bbe890623a}">
+      <Declaration><![CDATA[PROPERTY PUBLIC fTotalVolume : REAL]]></Declaration>
+      <Get Name="Get" Id="{2bbdf9be-86a6-4871-b6f7-07eded515274}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{b86e48e7-18eb-4773-81d0-3b8eea87d0e6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="fTotalWeight" Id="{37f700be-56a1-4853-b670-b1b197d28c9f}">
+      <Declaration><![CDATA[PROPERTY PUBLIC fTotalWeight : REAL]]></Declaration>
+      <Get Name="Get" Id="{cc6cadc8-9e33-4d76-87bc-7800bd309193}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{f5c8fff1-606e-4959-8c39-3eabed6040d7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <Method Name="M_Add" Id="{60b6ffc1-062c-4858-a5b9-496d0cf9a5e1}">
       <Declaration><![CDATA[METHOD PUBLIC M_Add
+VAR_INPUT
+	stProductInfo : ST_ProductInfo;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_stInventory[_nNumberProducts] := stProductInfo;
+_nNumberProducts := _nNumberProducts + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_CalculateVolume" Id="{ca098987-d7c7-49fb-be5e-a714b879e2ce}">
+      <Declaration><![CDATA[METHOD PRIVATE M_CalculateVolume
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -43,8 +88,8 @@ END_VAR
         <ST><![CDATA[]]></ST>
       </Implementation>
     </Method>
-    <Method Name="M_CalculateWeight" Id="{57d04ff3-3912-4b6b-a7e1-083aaea20f0e}">
-      <Declaration><![CDATA[METHOD PUBLIC M_CalculateWeight
+    <Method Name="M_CalculateWeight" Id="{fc436bc6-3362-4a30-ab1f-e272faa93133}">
+      <Declaration><![CDATA[METHOD PRIVATE M_CalculateWeight
 VAR_INPUT
 END_VAR
 ]]></Declaration>
@@ -55,16 +100,80 @@ END_VAR
     <Method Name="M_Remove" Id="{d8764512-37aa-4b16-b675-337ad4ad0d0e}">
       <Declaration><![CDATA[METHOD PUBLIC M_Remove
 VAR_INPUT
+	nIndex : INT;
+END_VAR
+VAR
+	stNullProduct : ST_ProductInfo := (eproductType := E_ProductType.cube, fDimension1 := 0, fDimension2 := 0, fDimension3 := 0, fSpecificWeight := 0);
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[_stInventory[nIndex] := _stInventory[_nNumberProducts - 1];
+_stInventory[_nNumberProducts - 1] := stNullProduct;
+_nNumberProducts := _nNumberProducts - 1;]]></ST>
       </Implementation>
     </Method>
+    <Property Name="nNumberProducts" Id="{edca9347-19db-4646-898e-439040ff7875}">
+      <Declaration><![CDATA[PROPERTY PUBLIC nNumberProducts : INT]]></Declaration>
+      <Get Name="Get" Id="{ba336513-34b5-40f1-a77c-aee2a36441fc}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{65b8b70c-f6cd-47e3-80fa-41ccde37ca22}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="stInventory" Id="{5c5bfa9c-de03-4dc2-83b6-1d39960c8e07}">
+      <Declaration><![CDATA[PROPERTY PUBLIC stInventory : array [1..5] of ST_ProductInfo]]></Declaration>
+      <Get Name="Get" Id="{c0dad690-bdb6-4d58-a3f7-4dfef74d5921}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{81453f42-ec0d-4f40-917f-6a1082e2e96e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
     <LineIds Name="FB_Inventory">
       <LineId Id="9" Count="0" />
     </LineIds>
+    <LineIds Name="FB_Inventory.FB_init">
+      <LineId Id="7" Count="0" />
+      <LineId Id="10" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Inventory.fTotalVolume.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Inventory.fTotalVolume.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Inventory.fTotalWeight.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Inventory.fTotalWeight.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
     <LineIds Name="FB_Inventory.M_Add">
+      <LineId Id="5" Count="0" />
+      <LineId Id="10" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Inventory.M_CalculateVolume">
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_Inventory.M_CalculateWeight">
@@ -72,6 +181,19 @@ END_VAR
     </LineIds>
     <LineIds Name="FB_Inventory.M_Remove">
       <LineId Id="5" Count="0" />
+      <LineId Id="13" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_Inventory.nNumberProducts.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Inventory.nNumberProducts.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Inventory.stInventory.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Inventory.stInventory.Set">
+      <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
